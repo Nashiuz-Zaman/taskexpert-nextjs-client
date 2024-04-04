@@ -45,7 +45,7 @@ const reducer = (state, { type, payload }) => {
    }
 };
 
-const BarChart = ({ data, modifyClasses = '' }) => {
+const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
    const svgRef = useRef(null);
    const graphRef = useRef(null);
    const [{ canvasSize, graphSize, xScale, yScale }, dispatch] = useReducer(
@@ -72,8 +72,8 @@ const BarChart = ({ data, modifyClasses = '' }) => {
          const margins = {
             top: canvasSize.width * 0.035,
             right: canvasSize.width * 0.035,
-            bottom: canvasSize.width * 0.06,
-            left: canvasSize.width * 0.06,
+            bottom: canvasSize.width * 0.07,
+            left: canvasSize.width * 0.07,
          };
 
          const width = canvasSize.width - margins.left - margins.right;
@@ -124,24 +124,24 @@ const BarChart = ({ data, modifyClasses = '' }) => {
          const yAxisGroup = graph.select('.y-axis');
 
          const xAxis = d3.axisBottom(xScale);
-         const yAxis = d3.axisLeft(yScale).ticks(4);
+         const yAxis = d3.axisLeft(yScale).ticks(ticksValue);
 
          xAxisGroup.call(xAxis);
          yAxisGroup.call(yAxis);
 
          graph
             .selectAll('.axis line, .axis path')
-            .attr('class', 'stroke-neutral-500');
+            .attr('class', 'stroke-neutral-400');
 
          graph
             .selectAll('.axis text')
-            .attr('class', 'text-neutral-500 text-base');
+            .attr('class', 'text-neutral-400 text-[0.625rem] md:text-xs lg:text-sm xl:text-base');
       }
-   }, [graphSize, xScale, yScale]);
+   }, [graphSize, xScale, yScale, ticksValue]);
 
    return (
       // container
-      <div className={`w-full p-6 aspect-video ${modifyClasses}`}>
+      <div className={`w-full p-4 2md:p-6 aspect-video ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
             {graphSize && (
@@ -176,6 +176,7 @@ const BarChart = ({ data, modifyClasses = '' }) => {
 BarChart.propTypes = {
    data: PropTypes.array,
    modifyClasses: PropTypes.string,
+   ticks: PropTypes.number,
 };
 
 export default BarChart;
