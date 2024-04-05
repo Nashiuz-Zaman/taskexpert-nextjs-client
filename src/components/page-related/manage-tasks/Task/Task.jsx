@@ -40,6 +40,7 @@ const Task = ({ taskData }) => {
    const { dispatch, useSelector } = useRedux();
    const { totalTasks, pinnedTasks } = useSelector(store => store.task);
    const [isDragging, setIsDragging] = useState(false);
+   const [menuPanelOpen, setMenuPanelOpen] = useState(false);
    const { deleteTask, updateTaskStatus, pinTask } = useTaskDatabaseMethods();
    const { findDropzoneElementId, dropzoneElementRefs } =
       useTaskDragDropProvider();
@@ -48,9 +49,13 @@ const Task = ({ taskData }) => {
    const deadlineStr = getDayMonthNameYearStr(deadline);
    const { isComputer } = useMediaQueryMatcher();
 
+   const handleMenuPanel = () => {
+      setMenuPanelOpen(prev => !prev);
+   };
+
    return (
       <div
-         className={`border border-neutral-200 shadow-sm rounded-lg p-3 pb-4 text-lg flex flex-col cursor-grab animate-fadeIn ${
+         className={`border relative border-neutral-200 shadow-sm rounded-lg p-3 pb-4 text-lg flex flex-col cursor-grab animate-fadeIn ${
             isDragging
                ? 'opacity-30 !cursor-grabbing'
                : 'opacity-100 !cursor-pointer'
@@ -100,77 +105,72 @@ const Task = ({ taskData }) => {
             <PriorityCard priorityLevel={priorityLevel} />
 
             {/* three dotted menu button */}
-            <DotsMenuBtn
-               modifyClasses='ml-auto mr-2'
-               renderChildren={(show, setShow) => {
-                  return (
-                     <MenuPanel
-                        modifyClasses='!text-sm sm:!text-base 2md:!text-lg xl:!text-xl w-max !space-y-2 2md:!space-y-4'
-                        show={show}
-                        setShow={setShow}
-                     >
-                        <ViewDetailsBtn
-                           onClickFunction={() => {
-                              dispatch(setTaskDetails(taskData?._id));
-                              openTaskDetailsPanel();
-                              setShow(false);
-                           }}
-                           text='View Details'
-                        />
-                        <EditBtn
-                           onClickFunction={() => {
-                              setShow(false);
-                              dispatch(setTaskToEdit(taskData));
-                              openTaskEditForm();
-                           }}
-                           text='Edit Task'
-                        />
-                        <PinBtn
-                           onClickFunction={() => {
-                              setShow(false);
-                              pinTask(taskData, pinnedTasks);
-                           }}
-                           text='Pin Task'
-                        />
+            <DotsMenuBtn onClickFunction={handleMenuPanel} modifyClasses='ml-auto mr-2' />
 
-                        {statusLevel !== 0 && (
-                           <MoveToTodoBtn
-                              onClickFunction={() => {
-                                 updateTaskStatus(_id, 0, totalTasks);
-                              }}
-                              text='Mark as Todo'
-                           />
-                        )}
+            <MenuPanel
+               modifyClasses='!text-sm sm:!text-base 2md:!text-lg xl:!text-xl w-max !space-y-2 2md:!space-y-4'
+               show={menuPanelOpen}
+               setShow={setMenuPanelOpen}
+            >
+               <ViewDetailsBtn
+                  onClickFunction={() => {
+                     dispatch(setTaskDetails(taskData?._id));
+                     openTaskDetailsPanel();
+                     setMenuPanelOpen(false);
+                  }}
+                  text='View Details'
+               />
+               <EditBtn
+                  onClickFunction={() => {
+                     setMenuPanelOpen(false);
+                     dispatch(setTaskToEdit(taskData));
+                     openTaskEditForm();
+                  }}
+                  text='Edit Task'
+               />
+               <PinBtn
+                  onClickFunction={() => {
+                     setMenuPanelOpen(false);
+                     pinTask(taskData, pinnedTasks);
+                  }}
+                  text='Pin Task'
+               />
 
-                        {statusLevel !== 1 && (
-                           <MoveToOngoingBtn
-                              onClickFunction={() => {
-                                 updateTaskStatus(_id, 1, totalTasks);
-                              }}
-                              text='Mark as Ongoing'
-                           />
-                        )}
+               {statusLevel !== 0 && (
+                  <MoveToTodoBtn
+                     onClickFunction={() => {
+                        updateTaskStatus(_id, 0, totalTasks);
+                     }}
+                     text='Mark as Todo'
+                  />
+               )}
 
-                        {statusLevel !== 2 && (
-                           <MoveToCompletedBtn
-                              onClickFunction={() => {
-                                 updateTaskStatus(_id, 2, totalTasks);
-                              }}
-                              text='Mark as Completed'
-                           />
-                        )}
+               {statusLevel !== 1 && (
+                  <MoveToOngoingBtn
+                     onClickFunction={() => {
+                        updateTaskStatus(_id, 1, totalTasks);
+                     }}
+                     text='Mark as Ongoing'
+                  />
+               )}
 
-                        {/* delete button */}
-                        <DeleteBtn
-                           onClickFunction={() => {
-                              deleteTask(_id, totalTasks, pinnedTasks);
-                           }}
-                           text='Delete'
-                        />
-                     </MenuPanel>
-                  );
-               }}
-            />
+               {statusLevel !== 2 && (
+                  <MoveToCompletedBtn
+                     onClickFunction={() => {
+                        updateTaskStatus(_id, 2, totalTasks);
+                     }}
+                     text='Mark as Completed'
+                  />
+               )}
+
+               {/* delete button */}
+               <DeleteBtn
+                  onClickFunction={() => {
+                     deleteTask(_id, totalTasks, pinnedTasks);
+                  }}
+                  text='Delete'
+               />
+            </MenuPanel>
          </div>
 
          {/* title */}

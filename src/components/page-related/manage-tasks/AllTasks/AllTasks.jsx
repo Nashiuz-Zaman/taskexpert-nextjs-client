@@ -8,7 +8,6 @@ import StatusSpecificTasks from '../StatusSpecificTasks/StatusSpecificTasks';
 import LoadingSpinner from '@/components/shared/LoadingSpinner/LoadingSpinner';
 
 // hooks
-import useGetInitialTasksData from '@/hooks/useGetInitialTasksData';
 import useTaskSeparator from '@/hooks/useTaskSeparator';
 
 // redux
@@ -18,8 +17,6 @@ import { useSelector } from 'react-redux';
 import { useTaskDragDropProvider } from '@/utils/TaskDragDropUtils';
 
 const AllTasks = ({ modifyClasses = '' }) => {
-   // fetch initial tasks data
-   useGetInitialTasksData();
    const { dropzoneElementRefs } = useTaskDragDropProvider();
    const { totalTasks, isLoading } = useSelector(store => store.task);
    const { searchTerm } = useSelector(store => store.search);
@@ -61,7 +58,9 @@ const AllTasks = ({ modifyClasses = '' }) => {
          )}
 
          {!isLoading && (
-            <div className={`grid grid-cols-3 h-full gap-2 xs:gap-3 sm:gap-4 p-3 md:p-5 lg:p-7`}>
+            <div
+               className={`grid grid-cols-3 h-full gap-2 xs:gap-3 sm:gap-4 p-3 md:p-5 lg:p-7`}
+            >
                {tasksToShow?.map(singleCollection => {
                   return (
                      <StatusSpecificTasks

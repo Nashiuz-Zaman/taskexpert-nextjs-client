@@ -3,36 +3,23 @@ import PropTypes from 'prop-types';
 
 // icons
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
 
-const DotsMenuBtn = ({ renderChildren, modifyClasses = '' }) => {
-   const [showMenu, setShowMenu] = useState(false);
-
-   const handleClick = () => {
-      setShowMenu(prev => !prev);
-   };
-
+const DotsMenuBtn = ({ onClickFunction, modifyClasses = '' }) => {
    return (
-      <div className={`relative flex items-center ${modifyClasses}`}>
-         <button
-            onClick={handleClick}
-            className={`text-neutral-500 hover:text-primary transition-all duration-default `}
-         >
-            <Icon
-               className='text-4xl text-inherit'
-               icon='heroicons-solid:dots-horizontal'
-            />
-         </button>
-
-         {renderChildren &&
-            typeof renderChildren === 'function' &&
-            renderChildren(showMenu, setShowMenu)}
-      </div>
+      <button
+         onClick={onClickFunction}
+         className={`block text-neutral-500 hover:text-primary transition-all duration-default ${modifyClasses}`}
+      >
+         <Icon
+            className='text-4xl text-inherit'
+            icon='heroicons-solid:dots-horizontal'
+         />
+      </button>
    );
 };
 
 DotsMenuBtn.propTypes = {
-   children: PropTypes.any,
+   onClickFunction: PropTypes.func,
    modifyClasses: PropTypes.string,
 };
 

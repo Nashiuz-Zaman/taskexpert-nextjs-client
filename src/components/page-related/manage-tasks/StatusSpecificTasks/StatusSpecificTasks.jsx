@@ -62,10 +62,14 @@ const StatusSpecificTasks = forwardRef(({ tasksData }, ref) => {
          >
             {/* if tasks available */}
             {!isLoading && statusSpecificTasks?.length > 0 && (
-               <ul className='space-y-3'>
-                  {statusSpecificTasks.map(task => {
+               <ul style={{ zIndex: 1 }} className='space-y-3 relative'>
+                  {statusSpecificTasks.map((task, i, arr) => {
                      return (
-                        <li key={task._id}>
+                        <li
+                           key={task._id}
+                           style={{ zIndex: arr.length - i }}
+                           className={`relative`}
+                        >
                            <Task taskData={task} />
                         </li>
                      );
