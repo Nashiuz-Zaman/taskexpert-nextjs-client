@@ -46,7 +46,7 @@ const useGetInitialTasksData = () => {
       if (profileData?.email) {
          getInitialTasks(profileData.email);
       }
-   }, [profileData, dispatch]);
+   }, [profileData, dispatch, axiosSecure]);
 };
 
 export default useGetInitialTasksData;
