@@ -1,5 +1,5 @@
 // react
-import { useEffect, useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // d3
@@ -86,7 +86,7 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
             payload: d3
                .arc()
                .outerRadius(radius)
-               .innerRadius(radius / 2),
+               .innerRadius(radius / 2.5),
          });
       }
    }, [canvasSize]);
@@ -101,13 +101,26 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                <g transform={graphSize.transform}>
                   {data?.map((d, i, arr) => {
                      return (
-                        <path
-                           key={d.id}
-                           d={arc(pie(arr)[i])}
-                           stroke='#fff'
-                           strokeWidth={4}
-                           fill={d.color}
-                        ></path>
+                        <React.Fragment key={d.id}>
+                           <path
+                              d={arc(pie(arr)[i])}
+                              stroke='#fff'
+                              strokeWidth={4}
+                              fill={d.color}
+                           ></path>
+                           <text
+                              className=' fill-white'
+                              style={{
+                                 textAnchor: 'middle',
+                                 fontSize: canvasSize.width * 0.024,
+                              }}
+                              transform={`translate(${arc.centroid(
+                                 pie(arr)[i]
+                              )})`}
+                           >
+                              {d.percentage}%
+                           </text>
+                        </React.Fragment>
                      );
                   })}
                </g>
@@ -138,7 +151,7 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                            fontSize={canvasSize.width * 0.015 * 2}
                            y={
                               i * canvasSize.width * 0.05 +
-                              canvasSize.width * 0.0115
+                              canvasSize.width * 0.0114
                            }
                            x={canvasSize.width * 0.03}
                         >

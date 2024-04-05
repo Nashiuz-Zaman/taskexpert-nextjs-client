@@ -131,17 +131,18 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
 
          graph
             .selectAll('.axis line, .axis path')
-            .attr('class', 'stroke-neutral-400');
+            .attr('class', 'stroke-neutral-500');
 
          graph
             .selectAll('.axis text')
-            .attr('class', 'text-neutral-400 text-[0.625rem] md:text-xs lg:text-sm xl:text-base');
+            .attr('class', 'text-neutral-500')
+            .style('font-size', canvasSize.width * 0.03);
       }
-   }, [graphSize, xScale, yScale, ticksValue]);
+   }, [graphSize, canvasSize, xScale, yScale, ticksValue]);
 
    return (
       // container
-      <div className={`w-full p-4 2md:p-6 aspect-video ${modifyClasses}`}>
+      <div className={`w-full p-4 aspect-video ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
             {graphSize && (
@@ -154,7 +155,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
                   {data?.map(d => {
                      return (
                         <rect
-                           className='fill-primaryLight'
+                           className='fill-[#6ee7b7]'
                            key={d.id}
                            height={graphSize.height - yScale(d.number)}
                            width={xScale.bandwidth()}
