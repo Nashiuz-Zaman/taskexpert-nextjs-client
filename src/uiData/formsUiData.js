@@ -4,19 +4,19 @@ export const priorityOptions = [
       id: 0,
       text: 'Low',
       value: 0,
-      color: '#4ade80',
+      color: '#79d79b',
    },
    {
       id: 1,
       text: 'Medium',
       value: 1,
-      color: '#fcd34d',
+      color: '#e4a768',
    },
    {
       id: 2,
       text: 'High',
       value: 2,
-      color: '#f87171',
+      color: '#df6666',
    },
 ];
 
