@@ -103,8 +103,8 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
                .scaleBand()
                .domain(data.map(el => el.name))
                .range([0, width])
-               .paddingOuter(0.1)
-               .paddingInner(0.1),
+               .paddingOuter(0.2)
+               .paddingInner(0.3),
          });
       }
    }, [canvasSize, data]);
@@ -154,7 +154,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
                   {data?.map(d => {
                      return (
                         <rect
-                           className='fill-primary'
+                           className='fill-primaryLight'
                            key={d.id}
                            height={graphSize.height - yScale(d.number)}
                            width={xScale.bandwidth()}

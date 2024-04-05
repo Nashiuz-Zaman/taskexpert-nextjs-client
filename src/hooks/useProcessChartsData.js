@@ -28,8 +28,9 @@ const useProcessChartsData = () => {
    };
 
    const getPriorityBasedTaskData = data => {
-      const priorityBasedTaskData = priorityOptions.map(priority => {
+      const priorityBasedTaskData = priorityOptions.map((priority, i) => {
          return {
+            id: i,
             name: priority.text,
             number: 0,
             color: priority.color,
