@@ -23,7 +23,7 @@ const useTaskSeparator = () => {
       [findTasksByStatus]
    );
 
-   return { getStatusSpecificTasks };
+   return { getStatusSpecificTasks, findTasksByStatus };
 };
 
 export default useTaskSeparator;

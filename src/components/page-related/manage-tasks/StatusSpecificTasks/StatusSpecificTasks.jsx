@@ -56,16 +56,20 @@ const StatusSpecificTasks = forwardRef(({ tasksData }, ref) => {
          {/* tasks container */}
          <div
             ref={tasksContainerRef}
-            className={`overflow-y-auto relative !overflow-x-visible h-[calc(57vh-6rem)] md:h-[calc(70vh-7.75rem)] lg:h-[calc(60vh-9.375rem)] 2xl:h-[calc(65vh-9.375rem)] scrollbar-thin scrollbar-thumb-primary scrollbar-track-white crollbar-thumb-rounded-full  ${
+            className={`overflow-y-auto relative !overflow-x-visible h-[calc(57vh-6rem)] md:h-[calc(70vh-7.75rem)] lg:h-[calc(60vh-9.375rem)] 2xl:h-[calc(65vh-9.375rem)] scrollbar-thin scrollbar-thumb-primary scrollbar-track-white ${
                hasScrollbar ? 'pr-3 sm:pr-5' : 'pr-0'
             }`}
          >
             {/* if tasks available */}
             {!isLoading && statusSpecificTasks?.length > 0 && (
-               <ul className='space-y-3'>
-                  {statusSpecificTasks.map(task => {
+               <ul style={{ zIndex: 1 }} className='space-y-3 relative'>
+                  {statusSpecificTasks.map((task, i, arr) => {
                      return (
-                        <li key={task._id}>
+                        <li
+                           key={task._id}
+                           style={{ zIndex: arr.length - i }}
+                           className={`relative`}
+                        >
                            <Task taskData={task} />
                         </li>
                      );

@@ -1,21 +1,33 @@
 # Project Task Expert (Next.js version)
 
-Live link: https://taskexpert.vercel.app/
+## About:
 
-This is a simplistic drag and drop task management web app that anybody can use for their daily life task management. It has three stages of task management - todo, ongoing, completed. Dragging and dropping updates UI along with the database itself. It is completely responsive. I used HTML drag and drop API for the drag and drop functionality. Currently it doesn't offer drag and drop support for touchscreens but I'm working on it and will add the functionality soon.
+A minimalistic task management web application created with Next.js and Express JS server with MongoDB database.
+
+# Live Link
+
+https://taskexpert.vercel.app/
+
+# Code
+
+Client-side: https://github.com/Nashiuz-Zaman/task-expert-client-nextjs
+Server-side: https://github.com/Nashiuz-Zaman/task-expert-server-nextjs
 
 # Language/Libraries/Frameworks
 
+## Frontend
+
 -  Next.js
+-  D3.js
 -  Redux Toolkit
 -  Tailwind CSS
--  React Toastify
--  React Icons
--  Iconify
 -  Firebase Authentication
--  JWT
 -  Axios
--  Express
+
+## Backend
+
+-  JWT
+-  Express JS
 -  MongoDB
 -  Mongoose
 
@@ -23,17 +35,16 @@ This is a simplistic drag and drop task management web app that anybody can use 
 
 ## Client-side:
 
-1. Users can register their accounts and login to the dashboard.
-2. Users can create, edit, delete, pin/unpin tasks from the dashboard.
-3. If user views the details of a task they can see the live countdown of the time remaining before they should complete the task.
-4. Users can drag and drop tasks into three statuses - Todo, Ongoing, Completed.
-5. Users can filter and sort their tasks based on priorities and can also search for specific tasks using the searchbar.
-6. Firebase authentication has been used for login and registration.
-7. Redux toolkit has been used for local UI state management.
-8. Website is fully responsive.
+-  Users can manage tasks in the task management dashboard using three stages- todo, ongoing and completed.
+-  Users can add, edit, delete tasks.
+-  Users can pin upto 6 important tasks.
+-  Users can view task details and the countdown to their deadlines.
+-  Users can register, log in to and delete their accounts. They can also change their username, password and profile photo.
+-  Users can view the overview of their current account in the analytics page.
 
 ## Server-side
 
-1. The server side has been created using Express JS, MongoDB, Mongoose.
-2. JSON Web Token has been used for authorization, users cannot see other users' data.
-3. If Token has expired, users will be automatically logged out.
+-  APIs are RESTful
+-  APIs have been protected with JWT authorization.
+-  The folder structure follows the MVC architecture.
+-  Mongoose has been used for strict data modeling.
