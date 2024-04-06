@@ -15,7 +15,7 @@ const MenuPanel = ({ show = false, setShow, children, modifyClasses = '' }) => {
    return (
       <div
          className={`absolute w-max top-1/3 right-0 z-[1000] bg-white border border-neutral-200 shadow-md rounded-xl p-4 px-5 space-y-4 menu-panel-focus ${
-            show ? 'opacity-100 visible' : 'opacity-0 collapse'
+            show ? 'block' : 'hidden'
          } ${modifyClasses}`}
       >
          {children}

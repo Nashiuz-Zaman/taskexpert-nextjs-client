@@ -12,6 +12,7 @@ const TimeRemainingCard = ({
    text = 'Remaining Time: ',
    deadline,
    modifyClasses = '',
+   icon = true,
 }) => {
    const [remainingTimeDetails, setRemainingTimeDetails] = useState(
       getRemainingTime(deadline)
@@ -27,7 +28,8 @@ const TimeRemainingCard = ({
 
    return (
       <div className={`flex items-center gap-1 ${modifyClasses}`}>
-         <Icon icon='ph:clock-fill' className='block' />
+         {icon && <Icon icon='ph:clock-fill' className='block' />}
+
          {/* time remaining part */}
          <p style={{ fontWeight: 'inherit' }}>
             <span>{text}</span>
@@ -54,6 +56,7 @@ const TimeRemainingCard = ({
 TimeRemainingCard.propTypes = {
    text: PropTypes.any,
    deadline: PropTypes.string,
+   icon: PropTypes.bool,
    modifyClasses: PropTypes.string,
 };
 
