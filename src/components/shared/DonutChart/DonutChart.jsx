@@ -92,7 +92,7 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
    }, [canvasSize]);
 
    return (
-      <div className={`w-full p-4 2md:p-6 aspect-video ${modifyClasses}`}>
+      <div className={`w-full h-full p-4 2md:p-6 ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
             {/* graph */}
@@ -105,7 +105,7 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                            <path
                               d={arc(pie(arr)[i])}
                               stroke='#fff'
-                              strokeWidth={4}
+                              strokeWidth={5}
                               fill={d.color}
                            ></path>
                            <text

@@ -142,7 +142,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
 
    return (
       // container
-      <div className={`w-full p-4 aspect-video ${modifyClasses}`}>
+      <div className={`w-full p-4 h-full ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
             {graphSize && (
@@ -155,7 +155,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
                   {data?.map(d => {
                      return (
                         <rect
-                           className='fill-[#6ee7b7]'
+                           className='fill-[#7dd3fc]'
                            key={d.id}
                            height={graphSize.height - yScale(d.number)}
                            width={xScale.bandwidth()}
