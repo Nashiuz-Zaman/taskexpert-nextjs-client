@@ -10,7 +10,7 @@ export const priorityOptions = [
       id: 1,
       text: 'Medium',
       value: 1,
-      color: '#e4a768',
+      color: '#fdba74',
    },
    {
       id: 2,
