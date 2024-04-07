@@ -11,6 +11,8 @@ const initialState = {
    pinnedTasks: [],
    isLoading: true,
    showTaskDetailsPanel: false,
+   taskCreateErrors: [],
+   taskEditErrors: [],
 };
 
 const taskSlice = createSlice({
@@ -24,7 +26,7 @@ const taskSlice = createSlice({
          state.taskToEdit = payload;
       },
       setTaskDetails: (state, { payload }) => {
-         console.log(payload)
+         console.log(payload);
          state.taskDetails = state.totalTasks.find(
             task => task._id === payload
          );
@@ -41,6 +43,12 @@ const taskSlice = createSlice({
       setIsLoading: (state, { payload }) => {
          state.isLoading = payload;
       },
+      setTaskCreateErrors: (state, { payload }) => {
+         state.taskCreateErrors = payload;
+      },
+      setTaskEditErrors: (state, { payload }) => {
+         state.taskEditErrors = payload;
+      },
    },
 });
 
@@ -55,4 +63,6 @@ export const {
    setTaskToEdit,
    setTaskDetails,
    setShowTaskDetailsPanel,
+   setTaskCreateErrors,
+   setTaskEditErrors,
 } = actions;

@@ -14,14 +14,20 @@ import useFormVisiblity from '@/hooks/useFormVisiblity';
 import useClickOutside from '@/hooks/useClickOutside';
 
 // redux
-import { useSelector } from 'react-redux';
+import useRedux from '@/hooks/useRedux';
+
+// utils
+import { validateTaskData } from '@/utils/validateTaskData';
 
 // data
 import { priorityOptions } from '@/uiData/formsUiData';
+import { setTaskCreateErrors } from '@/lib/redux/features/task/taskSlice';
 
 const TaskCreateForm = () => {
+   const { dispatch, useSelector } = useRedux();
    const { profileData } = useSelector(store => store.auth);
    const { taskCreateFormOpen } = useSelector(store => store.form);
+   const { taskCreateErrors } = useSelector(store => store.task);
    const { createTask } = useTaskDatabaseMethods();
    const { closeTaskCreateForm } = useFormVisiblity();
 
@@ -37,15 +43,16 @@ const TaskCreateForm = () => {
 
    const handleCreateTask = e => {
       e.preventDefault();
+      dispatch(setTaskCreateErrors([]));
 
       // take all the necessary values
       const form = e.target;
       const title = form.title.value;
       const description = form.description.value;
-      const deadline = new Date(form.deadline.value).toISOString();
+      const deadline = form.deadline.value && new Date(form.deadline.value).toISOString();
       const priorityLevel = parseInt(form.priority.value);
       const date = new Date().toISOString();
-     
+
       // Task data
       const taskData = {
          title,
@@ -56,6 +63,13 @@ const TaskCreateForm = () => {
          lastUpdated: date,
          email: profileData.email,
       };
+
+      // check for errors in the task data
+      const foundErrors = validateTaskData(taskData);
+      if (foundErrors.length > 0) {
+         dispatch(setTaskCreateErrors(foundErrors));
+         return;
+      }
 
       createTask(taskData);
       closeTaskCreateForm();
@@ -74,7 +88,11 @@ const TaskCreateForm = () => {
          />
 
          {/* form starts here */}
-         <form onSubmit={handleCreateTask} className='block space-y-3'>
+         <form
+            noValidate
+            onSubmit={handleCreateTask}
+            className='block space-y-3'
+         >
             {/* title */}
             <InputField2
                label='Title'
@@ -100,6 +118,22 @@ const TaskCreateForm = () => {
                options={priorityOptions}
                defaultValueData={0}
             />
+
+            {/* show errors here */}
+            {taskCreateErrors?.length > 0 && (
+               <div className='space-y-1 mt-3 md:mt-4'>
+                  {taskCreateErrors.map(error => {
+                     return (
+                        <p
+                           key={error}
+                           className='text-sm text-center font-semibold text-red-600'
+                        >
+                           * {error}
+                        </p>
+                     );
+                  })}
+               </div>
+            )}
 
             {/* submit button */}
             <ButtonBtn text='Add Task' modifyClasses='!ml-auto !mt-5' />
