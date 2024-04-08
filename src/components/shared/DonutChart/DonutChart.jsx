@@ -7,12 +7,14 @@ import * as d3 from 'd3';
 
 // utils
 import { findDims } from '@/utils/findElementDims';
+import { findSum } from '@/utils/basicMathUtils';
 
 const initialState = {
    canvasSize: null,
    graphSize: null,
    pie: null,
    arc: null,
+   total: null,
 };
 
 const ACTIONS = {
@@ -20,6 +22,7 @@ const ACTIONS = {
    setGraphSize: 'setGraphSize',
    setPie: 'setPie',
    setArc: 'setArc',
+   setTotal: 'setTotal',
 };
 
 const reducer = (state, { type, payload }) => {
@@ -32,15 +35,17 @@ const reducer = (state, { type, payload }) => {
          return { ...state, pie: payload };
       case ACTIONS.setArc:
          return { ...state, arc: payload };
+      case ACTIONS.setTotal:
+         return { ...state, total: payload };
       default:
          return state;
    }
 };
 
-const DonutChart = ({ data, modifyClasses = '' }) => {
+const DonutChart = ({ chartData, modifyClasses = '' }) => {
    const svgRef = useRef(null);
 
-   const [{ canvasSize, graphSize, pie, arc }, dispatch] = useReducer(
+   const [{ canvasSize, graphSize, pie, arc, total }, dispatch] = useReducer(
       reducer,
       initialState
    );
@@ -64,9 +69,13 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
          const width = canvasSize.width - canvasSize.width * 0.3;
          const center = { x: width / 2, y: canvasSize.height / 2 };
 
+         const numbersArr = chartData.map(el => el.number);
+         dispatch({ type: ACTIONS.setTotal, payload: findSum(numbersArr) });
+
          dispatch({
             type: ACTIONS.setGraphSize,
             payload: {
+               center,
                transform: `translate(${center.x},${center.y})`,
             },
          });
@@ -89,25 +98,41 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                .innerRadius(radius / 2.5),
          });
       }
-   }, [canvasSize]);
+   }, [canvasSize, chartData]);
 
    return (
-      <div className={`w-full h-full p-4 2md:p-6 ${modifyClasses}`}>
+      <div className={`w-full h-full p-4 2md:p-6 relative ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
-            {/* graph */}
+            {/* no data, show this text */}
+            {graphSize && Number.isFinite(total) && total < 1 && (
+               <text
+                  style={{ fontSize: canvasSize.width * 0.04 }}
+                  transform={`translate(${canvasSize.width * 0.15},${
+                     graphSize.center.y
+                  })`}
+                  className='fill-textPrimary'
+               >
+                  No data available
+               </text>
+            )}
 
+            {/* donut chart */}
             {graphSize && (
                <g transform={graphSize.transform}>
-                  {data?.map((d, i, arr) => {
+                  {/* show data */}
+                  {chartData?.map((d, i, arr) => {
                      return (
                         <React.Fragment key={d.id}>
+                           {/* pie slices */}
                            <path
                               d={arc(pie(arr)[i])}
                               stroke='#fff'
-                              strokeWidth={5}
+                              strokeWidth={6}
                               fill={d.color}
                            ></path>
+
+                           {/* percentage text */}
                            <text
                               className=' fill-white'
                               style={{
@@ -126,13 +151,15 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                </g>
             )}
 
+            {/* legends  */}
             {canvasSize && (
                <g
                   transform={`translate(${canvasSize.width * 0.7}, ${
                      canvasSize.height * 0.15
                   })`}
                >
-                  {data?.map((d, i) => {
+                  {/* circles */}
+                  {chartData?.map((d, i) => {
                      return (
                         <circle
                            key={d.id}
@@ -143,7 +170,8 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
                      );
                   })}
 
-                  {data?.map((d, i) => {
+                  {/* text */}
+                  {chartData?.map((d, i) => {
                      return (
                         <text
                            key={d.id}
@@ -167,7 +195,7 @@ const DonutChart = ({ data, modifyClasses = '' }) => {
 };
 
 DonutChart.propTypes = {
-   data: PropTypes.array,
+   chartData: PropTypes.array,
    modifyClasses: PropTypes.string,
 };
 
