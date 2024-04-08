@@ -21,7 +21,7 @@ const TasksBlock = ({ data, label, modifyClasses = '' }) => {
          <div
             className={`aspect-[16/10] px-2 py-5 sm:py-8 sm:px-4 xl:px-5 2xl:px-6 ${modifyClasses}`}
          >
-            <table className='flex flex-col w-full h-full text-left'>
+            <table className='flex flex-col w-full h-full text-left relative'>
                {/* head */}
                <thead className='block w-full mb-6 text-[0.625rem] xs:text-xs sm:text-sm xl:text-base 3xl:text-lg'>
                   <tr className={rowClasses}>
@@ -33,9 +33,9 @@ const TasksBlock = ({ data, label, modifyClasses = '' }) => {
                </thead>
 
                {!data?.length && (
-                  <tbody className='block pt-[5rem]'>
+                  <tbody className='block absolute top-[55%] -translate-y-1/2 left-1/2 -translate-x-1/2'>
                      <tr className='block'>
-                        <td className='block text-center font-semibold '>
+                        <td className='block text-center'>
                            No {label} tasks
                         </td>
                      </tr>

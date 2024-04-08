@@ -24,7 +24,7 @@ const Charts = () => {
             <ChartHeading text='Tasks (By Status)' />
 
             <BarChart
-               data={statusBasedTaskData}
+               chartData={statusBasedTaskData}
                modifyClasses='rounded-lg md:rounded-2xl xl:rounded-3xl border border-neutral-200 shadow-small'
             />
          </div>
@@ -33,7 +33,7 @@ const Charts = () => {
             <ChartHeading text='Tasks (By Priority)' />
 
             <DonutChart
-               data={priorityBasedTaskData}
+               chartData={priorityBasedTaskData}
                modifyClasses='rounded-lg md:rounded-2xl xl:rounded-3xl border border-neutral-200 shadow-small'
             />
          </div>
