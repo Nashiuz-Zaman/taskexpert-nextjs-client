@@ -7,6 +7,7 @@ import { findDims } from '@/utils/findElementDims';
 
 // d3
 import * as d3 from 'd3';
+import { findSum } from '@/utils/basicMathUtils';
 
 const initialState = {
    canvasSize: null,
@@ -15,6 +16,7 @@ const initialState = {
    yScale: null,
    xAxis: null,
    yAxis: null,
+   total: null,
 };
 
 const ACTIONS = {
@@ -24,6 +26,7 @@ const ACTIONS = {
    setYscale: 'setYscale',
    setXAxis: 'setXAxis',
    setYAxis: 'setYAxis',
+   setTotal: 'setTotal',
 };
 
 const reducer = (state, { type, payload }) => {
@@ -40,18 +43,18 @@ const reducer = (state, { type, payload }) => {
          return { ...state, xAxis: payload };
       case ACTIONS.setYAxis:
          return { ...state, yAxis: payload };
+      case ACTIONS.setTotal:
+         return { ...state, total: payload };
       default:
          return state;
    }
 };
 
-const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
+const BarChart = ({ chartData, modifyClasses = '', ticksValue = 3 }) => {
    const svgRef = useRef(null);
    const graphRef = useRef(null);
-   const [{ canvasSize, graphSize, xScale, yScale }, dispatch] = useReducer(
-      reducer,
-      initialState
-   );
+   const [{ canvasSize, graphSize, xScale, yScale, total }, dispatch] =
+      useReducer(reducer, initialState);
 
    useEffect(() => {
       const updateSizes = () => {
@@ -76,6 +79,9 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
             left: canvasSize.width * 0.07,
          };
 
+         const numbersArr = chartData.map(el => el.number);
+         dispatch({ type: ACTIONS.setTotal, payload: findSum(numbersArr) });
+
          const width = canvasSize.width - margins.left - margins.right;
          const height = canvasSize.height - margins.top - margins.bottom;
 
@@ -93,7 +99,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
             type: ACTIONS.setYscale,
             payload: d3
                .scaleLinear()
-               .domain([0, d3.max(data, d => d.number) + 5])
+               .domain([0, d3.max(chartData, d => d.number) + 5])
                .range([height, 0]),
          });
 
@@ -101,13 +107,13 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
             type: ACTIONS.setXScale,
             payload: d3
                .scaleBand()
-               .domain(data.map(el => el.name))
+               .domain(chartData.map(el => el.name))
                .range([0, width])
                .paddingOuter(0.2)
                .paddingInner(0.3),
          });
       }
-   }, [canvasSize, data]);
+   }, [canvasSize, chartData]);
 
    useEffect(() => {
       if (graphRef?.current) {
@@ -145,6 +151,20 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
       <div className={`w-full p-4 h-full ${modifyClasses}`}>
          {/* canvas */}
          <svg ref={svgRef} className='w-full h-full'>
+            {/* no data, show this text */}
+            {graphSize && Number.isFinite(total) && total < 1 && (
+               <text
+                  style={{ fontSize: canvasSize.width * 0.04 }}
+                  transform={`translate(${graphSize.width * 0.4},${
+                     graphSize.height * 0.65
+                  })`}
+                  className='fill-textPrimary'
+               >
+                  No data available
+               </text>
+            )}
+
+            {/* chart */}
             {graphSize && (
                <g
                   ref={graphRef}
@@ -152,7 +172,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
                   height={graphSize.height}
                   transform={graphSize.transform}
                >
-                  {data?.map(d => {
+                  {chartData?.map(d => {
                      return (
                         <rect
                            className='fill-[#7dd3fc]'
@@ -175,7 +195,7 @@ const BarChart = ({ data, modifyClasses = '', ticksValue = 3 }) => {
 };
 
 BarChart.propTypes = {
-   data: PropTypes.array,
+   chartData: PropTypes.array,
    modifyClasses: PropTypes.string,
    ticks: PropTypes.number,
 };
