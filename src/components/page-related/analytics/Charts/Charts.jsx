@@ -1,15 +1,14 @@
 'use client';
 
 // components
-import BarChart from '@/components/shared/BarChart/BarChart';
+import { BarChart, DonutChart } from '@/components/shared';
 import ChartHeading from '../ChartHeading/ChartHeading';
 
 // hooks
-import useProcessChartsData from '@/hooks/useProcessChartsData';
+import { useProcessChartsData } from '@/hooks';
 
 // redux
 import { useSelector } from 'react-redux';
-import DonutChart from '@/components/shared/DonutChart/DonutChart';
 
 const Charts = () => {
    const { totalTasks } = useSelector(store => store.task);

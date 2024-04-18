@@ -2,10 +2,10 @@
 
 // react
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 // components
 import TaskSmallCard from '../TaskSmallCard/TaskSmallCard';
-import { useEffect, useState } from 'react';
 
 const TasksBlock = ({ data, label, modifyClasses = '' }) => {
    const [isClient, setIsClient] = useState(false);
@@ -35,9 +35,7 @@ const TasksBlock = ({ data, label, modifyClasses = '' }) => {
                {!data?.length && (
                   <tbody className='block absolute top-[55%] -translate-y-1/2 left-1/2 -translate-x-1/2'>
                      <tr className='block'>
-                        <td className='block text-center'>
-                           No {label} tasks
-                        </td>
+                        <td className='block text-center'>No {label} tasks</td>
                      </tr>
                   </tbody>
                )}

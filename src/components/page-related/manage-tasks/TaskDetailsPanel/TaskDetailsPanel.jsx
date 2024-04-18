@@ -4,22 +4,20 @@
 import { Icon } from '@iconify/react';
 
 // components
-import CloseBtn from '../../../buttons/CloseBtn/CloseBtn';
-import PriorityCard from '@/components/shared/PriorityCard/PriorityCard';
-import TimeRemainingCard from '@/components/shared/TimeRemainingCard/TimeRemainingCard';
-import DeleteBtn from '@/components/buttons/DeleteBtn/DeleteBtn';
+import { CloseBtn, DeleteBtn } from '@/components/buttons';
+import { PriorityCard, TimeRemainingCard } from '@/components/shared';
 
 // hooks
-import useClickOutside from '@/hooks/useClickOutside';
-import useEscapeClose from '@/hooks/useEscapeClose';
-import useTaskDatabaseMethods from '@/hooks/useTaskDatabaseMethods';
-import useFormVisiblity from '@/hooks/useFormVisiblity';
+import {
+   useClickOutside,
+   useEscapeClose,
+   useTaskDatabaseMethods,
+   useFormVisiblity,
+   useRedux
+} from '@/hooks';
 
 // redux
-import useRedux from '@/hooks/useRedux';
-import {
-   setTaskDetails,
-} from '@/lib/redux/features/task/taskSlice';
+import { setTaskDetails } from '@/lib/redux/features/task/taskSlice';
 
 // utils
 import { getDayMonthNameYearStr } from '@/utils/dateTimeMethods';

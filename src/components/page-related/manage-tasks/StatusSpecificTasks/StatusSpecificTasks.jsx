@@ -4,12 +4,14 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
+// iconify
+import { Icon } from '@iconify/react';
+
 // component
 import Task from '../Task/Task';
 
 // redux
 import { useSelector } from 'react-redux';
-import { Icon } from '@iconify/react';
 
 const StatusSpecificTasks = forwardRef(({ tasksData }, ref) => {
    const tasksContainerRef = useRef();

@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
 // components
-import CloseBtn from '@/components/buttons/CloseBtn/CloseBtn';
-import MobileMenuBtn from '@/components/buttons/MobileMenuBtn/MobileMenuBtn';
-import ButtonBtn from '@/components/buttons/ButtonBtn/ButtonBtn';
-import BrandLogo from '@/components/shared/BrandLogo/BrandLogo';
+import { CloseBtn, MobileMenuBtn, ButtonBtn } from '@/components/buttons';
+import { BrandLogo } from '@/components/shared';
 import DashboardNavContent from '../DashboardNavContent/DashboardNavContent';
 
 // hook
-import useDashboardMobileNav from '@/hooks/useDashboardMobileNav';
-import useEscapeClose from '@/hooks/useEscapeClose';
-import useLoginMethods from '@/hooks/useLoginMethods';
-import useClickOutside from '@/hooks/useClickOutside';
-import useStopScrolling from '@/hooks/useStopScrolling';
+import {
+   useDashboardMobileNav,
+   useEscapeClose,
+   useLoginMethods,
+   useClickOutside,
+   useStopScrolling,
+} from '@/hooks';
 
 const DashboardMobileNav = ({
    modifyClasses = '',

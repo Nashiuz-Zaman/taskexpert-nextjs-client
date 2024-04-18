@@ -5,7 +5,9 @@ import TasksBlock from '../TasksBlock/TasksBlock';
 import ChartHeading from '../ChartHeading/ChartHeading';
 
 // hook
-import useTaskSeparator from '@/hooks/useTaskSeparator';
+import { useTaskSeparator } from '@/hooks';
+
+// redux
 import { useSelector } from 'react-redux';
 
 const TasksInfo = () => {

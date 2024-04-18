@@ -1,6 +1,5 @@
-// imports
-import SectionHeading from '@/components/shared/SectionHeading/SectionHeading';
-import PhotoGallery2 from '@/components/shared/PhotoGallery2/PhotoGallery2';
+// components
+import { SectionHeading, PhotoGallery2 } from '@/components/shared';
 
 // data
 import { targetAudienceTextContent } from '@/uiData/homeUiContent';

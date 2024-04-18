@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 
 // components
-import BrandLogo from '../../../shared/BrandLogo/BrandLogo';
+import { BrandLogo } from '../../../shared';
 import DashboardNavContent from '../DashboardNavContent/DashboardNavContent';
 
 const DashboardNav = ({ modifyClasses = '' }) => {

@@ -4,16 +4,14 @@
 import { useEffect, useState } from 'react';
 
 // components
-import Carousel1 from '@/components/shared/Carousel1/Carousel1';
-import Carousel2 from '@/components/shared/Carousel2/Carousel2';
-import Text from '@/components/shared/Text/Text';
+import { Carousel1, Carousel2, Text } from '@/components/shared';
+import { LinkBtn } from '@/components/buttons';
 
 // hooks
 import useMediaQueryMatcher from '@/hooks/useMediaQueryMatcher';
 
 // data
 import { aboutContent } from '@/uiData/homeUiContent';
-import LinkBtn from '@/components/buttons/LinkBtn/LinkBtn';
 
 const About = () => {
    const { isComputer } = useMediaQueryMatcher();

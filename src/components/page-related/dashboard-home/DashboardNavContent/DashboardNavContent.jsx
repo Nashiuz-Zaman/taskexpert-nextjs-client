@@ -6,13 +6,11 @@ import PropTypes from 'prop-types';
 // icons
 import { Icon } from '@iconify/react';
 
-// hook
-import useDashboardMobileNav from '@/hooks/useDashboardMobileNav';
-
 // components
-import DashboardNavHeading from '../DashboardNavHeading/DashboardNavHeading';
-import PinnedTask from '../PinnedTask/PinnedTask';
-import DashboardNavLink from '../DashboardNavLink/DashboardNavLink';
+import { DashboardNavHeading, PinnedTask, DashboardNavLink } from './../index';
+
+// hook
+import { useDashboardMobileNav } from '@/hooks';
 
 // redux
 import { useSelector } from 'react-redux';
