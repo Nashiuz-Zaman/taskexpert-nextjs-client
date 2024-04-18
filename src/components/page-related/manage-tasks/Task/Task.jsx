@@ -8,24 +8,27 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 // component
-import PriorityCard from '@/components/shared/PriorityCard/PriorityCard';
-import EditBtn from '@/components/buttons/EditBtn/EditBtn';
-import DeleteBtn from '@/components/buttons/DeleteBtn/DeleteBtn';
-import PinBtn from '@/components/buttons/PinBtn/PinBtn';
-import ViewDetailsBtn from '@/components/buttons/ViewDetailsBtn/ViewDetailsBtn';
-import DotsMenuBtn from '@/components/buttons/DotsMenuBtn/DotsMenuBtn';
-import MenuPanel from '@/components/shared/MenuPanel/MenuPanel';
-import MoveToOngoingBtn from '@/components/buttons/MoveToOngoingBtn/MoveToOngoingBtn';
-import MoveToCompletedBtn from '@/components/buttons/MoveToCompletedBtn/MoveToCompletedBtn';
-import MoveToTodoBtn from '@/components/buttons/MoveToTodoBtn/MoveToTodoBtn';
+import { PriorityCard, MenuPanel } from '@/components/shared';
+import {
+   EditBtn,
+   DeleteBtn,
+   PinBtn,
+   ViewDetailsBtn,
+   DotsMenuBtn,
+   MoveToOngoingBtn,
+   MoveToCompletedBtn,
+   MoveToTodoBtn,
+} from '@/components/buttons';
 
 // hook
-import useTaskDatabaseMethods from '@/hooks/useTaskDatabaseMethods';
-import useFormVisiblity from '@/hooks/useFormVisiblity';
-import useMediaQueryMatcher from '@/hooks/useMediaQueryMatcher';
+import {
+   useTaskDatabaseMethods,
+   useFormVisiblity,
+   useMediaQueryMatcher,
+   useRedux,
+} from '@/hooks';
 
 // redux
-import useRedux from '@/hooks/useRedux';
 import {
    setTaskToEdit,
    setTaskDetails,
@@ -105,7 +108,10 @@ const Task = ({ taskData }) => {
             <PriorityCard priorityLevel={priorityLevel} />
 
             {/* three dotted menu button */}
-            <DotsMenuBtn onClickFunction={handleMenuPanel} modifyClasses='ml-auto mr-2' />
+            <DotsMenuBtn
+               onClickFunction={handleMenuPanel}
+               modifyClasses='ml-auto mr-2'
+            />
 
             <MenuPanel
                modifyClasses='!text-sm sm:!text-base 2md:!text-lg xl:!text-xl w-max !space-y-2 2md:!space-y-4'

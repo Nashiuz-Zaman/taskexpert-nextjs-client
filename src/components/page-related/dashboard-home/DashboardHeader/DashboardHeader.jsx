@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 // components
 import DashboardMobileNav from '../DashboardMobileNav/DashboardMobileNav';
-import UserProfile from '@/components/shared/UserProfile/UserProfile';
+import { UserProfile } from '@/components/shared';
 
 // hooks
-import useLoginMethods from '@/hooks/useLoginMethods';
+import { useLoginMethods } from '@/hooks';
 
 // redux
 import { useSelector } from 'react-redux';

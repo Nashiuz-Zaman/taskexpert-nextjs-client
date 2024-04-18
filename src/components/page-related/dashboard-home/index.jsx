@@ -1,7 +1,6 @@
 'use client';
 
 // exports
-export { default as DashboardFooter } from './DashboardFooter/DashboardFooter';
 export { default as DashboardHeader } from './DashboardHeader/DashboardHeader';
 export { default as DashboardMobileNav } from './DashboardMobileNav/DashboardMobileNav';
 export { default as DashboardNav } from './DashboardNav/DashboardNav';

@@ -1,10 +1,8 @@
 // react
-
 import PropTypes from 'prop-types';
 
 // components
-import PriorityCard from '@/components/shared/PriorityCard/PriorityCard';
-import TimeRemainingCard from '@/components/shared/TimeRemainingCard/TimeRemainingCard';
+import { PriorityCard, TimeRemainingCard } from '@/components/shared';
 
 const TaskSmallCard = ({ taskData, modifyClasses = '' }) => {
    const { i, title, deadline, priorityLevel } = taskData;

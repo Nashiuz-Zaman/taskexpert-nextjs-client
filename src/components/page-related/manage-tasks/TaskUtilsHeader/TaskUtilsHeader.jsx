@@ -4,19 +4,14 @@
 import PropTypes from 'prop-types';
 
 // components
-import FilterBtn from '@/components/buttons/FilterBtn/FilterBtn';
-import SortBtn from '@/components/buttons/SortBtn/SortBtn';
-import Searchbar from '@/components/shared/Searchbar/Searchbar';
-import AddBtn from '@/components/buttons/AddBtn/AddBtn';
-import MenuPanel from '@/components/shared/MenuPanel/MenuPanel';
-import FilterForm from '@/components/forms/FilterForm/FilterForm';
-import SortForm from '@/components/forms/SortForm/SortForm';
+import { FilterBtn, SortBtn, AddBtn } from '@/components/buttons';
+import { Searchbar, MenuPanel } from '@/components/shared';
+import { FilterForm, SortForm } from '@/components/forms';
 
 // hook
-import useFormVisiblity from '@/hooks/useFormVisiblity';
+import { useFormVisiblity, useRedux } from '@/hooks';
 
 // redux
-import useRedux from '@/hooks/useRedux';
 import { setSearchTerm } from '@/lib/redux/features/search/searchSlice';
 import { setTaskFilterParams } from '@/lib/redux/features/filter/filterSlice';
 import { setPrioritySortParam } from '@/lib/redux/features/sort/sortSlice';

@@ -2,15 +2,13 @@
 import PropTypes from 'prop-types';
 
 // component
-import UnpinBtn from '@/components/buttons/UnpinBtn/UnpinBtn';
+import { UnpinBtn } from '@/components/buttons';
 
 // hook
-import useTaskDatabaseMethods from '@/hooks/useTaskDatabaseMethods';
+import { useTaskDatabaseMethods, useRedux, useFormVisiblity } from '@/hooks';
 
 // redux
-import useRedux from '@/hooks/useRedux';
 import { setTaskDetails } from '@/lib/redux/features/task/taskSlice';
-import useFormVisiblity from '@/hooks/useFormVisiblity';
 
 const PinnedTask = ({ defaultValue = true, task, modifyClasses = '' }) => {
    const { dispatch, useSelector } = useRedux();
