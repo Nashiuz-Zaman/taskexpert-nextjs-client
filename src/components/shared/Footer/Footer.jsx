@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 // components
 import InnerContainer from '@/components/containers/InnerContainer/InnerContainer';
-import BrandLogo from '@/components/shared/BrandLogo/BrandLogo';
 import LinkList from '@/components/shared/LinkList/LinkList';
 
 // react icons
@@ -16,6 +15,7 @@ import {
 
 // data
 import { footerOptions, currentYear } from '../../../uiData/footerData';
+import { BrandLogo } from '../BrandLogo/BrandLogo';
 
 const Footer = () => {
   // common classes
