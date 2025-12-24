@@ -25,7 +25,7 @@ const useGetInitialTasksData = () => {
 
          const totalTasksPromise = axiosSecure.get(`/tasks?email=${email}`);
          const pinnedTasksPromise = axiosSecure.get(
-            `/pinned-tasks?email=${email}`
+            `/pinned-tasks?email=${email}` 
          );
 
          const [totalTasksRes, pinnedTasksRes] = await Promise.all([

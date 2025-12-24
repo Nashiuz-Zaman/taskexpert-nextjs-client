@@ -2,9 +2,11 @@
 import PropTypes from 'prop-types';
 
 // components
-import DashboardHeader from '@/components/page-related/dashboard-home/DashboardHeader/DashboardHeader';
-import DashboardNav from '@/components/page-related/dashboard-home/DashboardNav/DashboardNav';
-import TaskFetchingComponent from './../../components/shared/TaskFetchingComponent/TaskFetchingComponent';
+import {
+   DashboardHeader,
+   DashboardNav,
+} from '@/components/page-related/dashboard-home';
+import { TaskFetchingComponent } from './../../components/shared';
 
 const DashboardLayout = ({ children }) => {
    return (

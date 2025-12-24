@@ -11,6 +11,7 @@ export { default as useFormVisiblity } from './useFormVisiblity';
 export { default as useGetInitialTasksData } from './useGetInitialTasksData';
 export { default as useLoginMethods } from './useLoginMethods';
 export { default as useMediaQueryMatcher } from './useMediaQueryMatcher';
+export { default as useEscapeClose } from './useEscapeClose';
 export { default as useMobileNavigation } from './useMobileNavigation';
 export { default as useProcessChartsData } from './useProcessChartsData';
 export { default as useRedux } from './useRedux';

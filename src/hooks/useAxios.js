@@ -19,6 +19,7 @@ import { showToast } from '@/utils/toastify';
 
 const axiosPublic = axios.create({
    baseURL: serverUrl,
+   withCredentials: true
 });
 
 const axiosSecure = axios.create({

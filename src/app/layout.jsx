@@ -27,6 +27,32 @@ export const metadata = {
    title: 'Task Expert | Streamlining Your Productivity',
    description:
       "Task Expert is all you'll ever need for seamless workflow management of your everyday responsibilities",
+
+   openGraph: {
+      title: 'Task Expert | Streamlining Your Productivity',
+      description:
+         "Task Expert is all you'll ever need for seamless workflow management of your everyday responsibilities",
+      url: 'https://taskexpert.vercel.app',
+      siteName: 'Task Expert',
+      images: [
+         {
+            url: 'https://taskexpert.vercel.app/og-image.webp',
+            width: 1200,
+            height: 630,
+            alt: 'Task Expert – Streamlining Your Productivity',
+         },
+      ],
+      locale: 'en_US',
+      type: 'website',
+   },
+
+   twitter: {
+      card: 'summary_large_image',
+      title: 'Task Expert | Streamlining Your Productivity',
+      description:
+         "Task Expert is all you'll ever need for seamless workflow management",
+      images: ['https://taskexpert.vercel.app/og-image.webp'],
+   },
 };
 
 const RootLayout = ({ children }) => {
