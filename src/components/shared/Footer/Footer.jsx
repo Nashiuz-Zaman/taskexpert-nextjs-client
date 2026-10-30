@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // components
 import InnerContainer from '@/components/containers/InnerContainer/InnerContainer';
 import LinkList from '@/components/shared/LinkList/LinkList';
-import BrandLogo from '../BrandLogo/Changing-name';
+import BrandLogo from '../BrandLogo/BrandLogo';
 
 // react icons
 import {
