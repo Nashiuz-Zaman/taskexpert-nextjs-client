@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 // components
 import CloseBtn from '@/components/buttons/CloseBtn/CloseBtn';
-import BrandLogo from '@/components/shared/BrandLogo/BrandLogo';
+import BrandLogo from '@/components/shared/BrandLogo/Changing-name';
 import MobileMenuBtn from '@/components/buttons/MobileMenuBtn/MobileMenuBtn';
 import ButtonBtn from '@/components/buttons/ButtonBtn/ButtonBtn';
 

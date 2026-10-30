@@ -5,7 +5,6 @@ export { default as Accordion } from './Accordion/Accordion';
 export { default as AuthComponent } from './AuthComponent/AuthComponent';
 export { default as Backdrop } from './Backdrop/Backdrop';
 export { default as BarChart } from './BarChart/BarChart';
-export { default as BrandLogo } from './BrandLogo/BrandLogo';
 export { default as Carousel1 } from './Carousel1/Carousel1';
 export { default as Carousel2 } from './Carousel2/Carousel2';
 export { default as DonutChart } from './DonutChart/DonutChart';

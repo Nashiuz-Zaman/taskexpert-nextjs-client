@@ -4,7 +4,7 @@
 import PropTypes from 'prop-types';
 
 // components
-import BrandLogo from '@/components/shared/BrandLogo/BrandLogo';
+import BrandLogo from '@/components/shared/BrandLogo/Changing-name';
 import InnerContainer from '@/components/containers/InnerContainer/InnerContainer';
 import MobileNav from '@/components/shared/MobileNav/MobileNav';
 import HeaderAuthBtns from '../HeaderAuthBtns/HeaderAuthBtns';
